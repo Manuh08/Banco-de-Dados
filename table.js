@@ -13,7 +13,7 @@ window.carregarTabela = async function () {
         cell.textContent = value;
         row.appendChild(cell);
       });
-
+      
       tableBody.appendChild(row);
     });
   } catch (error) {

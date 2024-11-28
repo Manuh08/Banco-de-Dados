@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname)));
 
 app.get('/api/pessoa', async (req, res) => {
   try {
-    const result = await pool.query(`select * from aluno`);
+    const result = await pool.query(`select * from pessoa`);
     res.json(result.rows);
   } catch (err) {
     console.error(err);
@@ -29,7 +29,6 @@ app.get('/api/pessoa', async (req, res) => {
 app.get('/api/pessoa', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
-
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });
