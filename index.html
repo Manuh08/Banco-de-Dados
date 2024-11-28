@@ -3,72 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clientes</title>
->
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+    <title>Tabela de Alunos</title>
 </head>
 <body>
-
-<h1>Tabela de Clientes</h1>
-<table id="clientesTable">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Nascimento</th>
-            <th>Idade</th>
-            <th>CPF</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tbody>
-            {clientes.map((usuario) => (
-              <tr className='table-database-colum'  key={usuario.id}>
-                <td>{usuario.id}</td>
-                <td>{usuario.nome}</td>
-                <td>{usuario.cpf}</td>
-                <td>{usuario.ra}</td>
-                <td>{usuario.datanascimento}</td>
-                <td>{usuario.sexo}</td>
-                <td>{usuario.cidade}</td>
-                <td>{usuario.estado}</td>
-              </tr>
-            ))}
-          </tbody>
-    </tbody>
-</table>
-
-<script>
-    async function fetchClientes() {
-        try {
-            const response = await fetch('http://localhost:3000/clientes/');
-            const clientes = await response.json();
-
-            const tbody = document.querySelector('#clientesTable tbody');
-            tbody.innerHTML = ''; // Limpa a tabela antes de adicionar novos dados
-
-            clientes.forEach(cliente => {
-                const idade = new Date().getFullYear() - new Date(cliente.nascimento).getFullYear(); // Cálculo da idade
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${cliente.id}</td>
-                    <td>${cliente.nome}</td>
-                    <td>${new Date(cliente.nascimento).toLocaleDateString()}</td>
-                    <td>${idade}</td>
-                    <td>${cliente.cpf}</td>
-                `;
-                tbody.appendChild(row);
-            });
-        } catch (error) {
-            console.error("Erro ao buscar clientes:", error);
-        }
-    }
-
-   
-
-    // Chama a função para buscar os clientes quando a página carregar
-   
-    window.onload = fetchClientes;
-</script>
-
+    <header>
+    <h1>Tabela de Alunos</h1>
+</header>
+<div class="bot">
+    <button class="botao" id="toggleTabela">Mostrar Tabela</button>
+</div>
+    <div id="tabelaContainer" >
+        <main>
+        <table border="10">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>RA</th>
+                    <th>Nome</th>
+                    <th>Educacenso</th>
+                    <th>Data de Nascimento</th>
+                    <th>Idade</th>
+                    <th>CPF</th>
+                </tr>
+            </thead>
+            <tbody id="pessoaTable">
+            </tbody>
+        </table>
+    </main>
+    </div>
+<footer>
+    <h1>Roda Pé</h1>
+</footer>
+<script src="table.js"></script>
+<script src="mostrartable.js"></script>
 </body>
 </html>
